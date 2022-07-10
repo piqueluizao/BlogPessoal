@@ -3,6 +3,8 @@ package com.generation.blogpessoal.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
 import com.generation.blogpessoal.repository.UsuarioRepository;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@SuppressWarnings("unused")
 @Service
 public class UsuarioService {
 
@@ -52,6 +55,7 @@ public class UsuarioService {
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setFoto(usuario.get().getFoto());
+				usuarioLogin.get().setTipo(usuario.get().getTipo());
 				usuarioLogin.get().setToken(gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
 
@@ -87,5 +91,6 @@ public class UsuarioService {
 		return "Basic " + new String(tokenBase64);
 
 	}
+
 
 }

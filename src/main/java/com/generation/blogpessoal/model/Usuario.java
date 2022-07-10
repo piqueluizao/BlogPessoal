@@ -33,23 +33,30 @@ public class Usuario {
 	@NotNull(message = "O atributo Usuário é Obrigatório!")
 	@Email(message = "O atributo Usuário deve ser um email válido!")
 	private String usuario;
+	
+	private String foto;
+	
+	private String biografia;
 
 	@NotBlank(message = "O atributo Senha é Obrigatório!")
 	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String senha;
-
-	private String foto;
+	
+	private String tipo;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 
-	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+	public Usuario(Long id, String nome, String usuario, String foto, String biografia, String senha, String tipo) {
 		this.id = id;
 		this.nome = nome;
 		this.usuario = usuario;
-		this.senha = senha;
 		this.foto = foto;
+		this.biografia = biografia;
+		this.senha = senha;
+		this.tipo = tipo;
+		
 	}
 
 	public Usuario() {	}
@@ -59,7 +66,7 @@ public class Usuario {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -78,6 +85,22 @@ public class Usuario {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getBiografia() {
+		return biografia;
+	}
+
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
 
 	public String getSenha() {
 		return this.senha;
@@ -86,21 +109,13 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-    public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
     
-	public List<Postagem> getPostagem1() {
-		return this.postagem;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setPostagem1(List<Postagem> postagem) {
-		this.postagem = postagem;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public List<Postagem> getPostagem() {
